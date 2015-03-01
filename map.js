@@ -23,13 +23,15 @@ lat = "45.5017";
 
 
     require([
-      "esri/map", 
+      "esri/map",
+	  "esri/layers/ArcGISDynamicMapServiceLayer",
+	  "esri/layers/ImageParameters",	  
       "esri/dijit/LocateButton",
       "esri/geometry/Point", 
         "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol",
         "esri/graphic", "esri/Color", "dojo/domReady!"
     ], function(
-      Map, LocateButton, Point,
+      Map, ArcGISDynamicMapServiceLayer, ImageParameters, LocateButton, Point,
         SimpleMarkerSymbol, SimpleLineSymbol,
         Graphic, Color
     )  {
@@ -39,7 +41,19 @@ lat = "45.5017";
         zoom: 12,
         basemap: "streets"
       });
-      
+	  //set imageParameters and load a dynamicMapServiceLayer to view
+	   var imageParameters = new ImageParameters();
+        imageParameters.format = "jpeg";
+		
+		var dynamicMapServiceLayer = new ArcGISDynamicMapServiceLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Population_World/MapServer", {
+          "opacity" : 0.5,
+          "imageParameters" : imageParameters
+        });
+
+        map.addLayer(dynamicMapServiceLayer);
+      });
+
+
 	  map.on("load", initFunc);
 	        
       geoLocate = new LocateButton({
