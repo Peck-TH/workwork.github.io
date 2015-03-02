@@ -25,7 +25,7 @@ lat = "45.5017";
     require([
       "esri/map",
 	  "esri/layers/ArcGISDynamicMapServiceLayer",
-	  "esri/layers/ImageParameters",	  
+	  "esri/layers/ImageParameters",
       "esri/dijit/LocateButton",
       "esri/geometry/Point", 
         "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol",
@@ -41,17 +41,16 @@ lat = "45.5017";
         zoom: 12,
         basemap: "streets"
       });
-	  //set imageParameters and load a dynamicMapServiceLayer to view
+      
 	   var imageParameters = new ImageParameters();
-        imageParameters.format = "jpeg";
+        imageParameters.format = "jpeg"; //set the image type to PNG24, note default is PNG8.
 		
-		var dynamicMapServiceLayer = new ArcGISDynamicMapServiceLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Population_World/MapServer", {
-          "opacity" : 0.5,
+		var dynamicMapServiceLayer = new ArcGISDynamicMapServiceLayer("http://services5.arcgis.com/Jr5Gzj0MKa8VuFTN/arcgis/rest/services/wifilocations/FeatureServer/", {
+          "opacity" : 1,
           "imageParameters" : imageParameters
         });
 
         map.addLayer(dynamicMapServiceLayer);
-      });
 
 
 	  map.on("load", initFunc);
