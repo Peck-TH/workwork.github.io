@@ -11,7 +11,13 @@ long = "-73.5673";
 lat = "45.5017";
 
     require([
+<<<<<<< HEAD
       "esri/map", 
+=======
+      "esri/map",
+	  "esri/layers/ArcGISDynamicMapServiceLayer",
+	  "esri/layers/ImageParameters",
+>>>>>>> origin/master
       "esri/dijit/LocateButton",
       "esri/geometry/Point", 
         "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol",
@@ -28,7 +34,22 @@ lat = "45.5017";
         basemap: "streets"
       });
       
+<<<<<<< HEAD
 	  
+=======
+	   var imageParameters = new ImageParameters();
+        imageParameters.format = "jpeg"; //set the image type to PNG24, note default is PNG8.
+		
+		var dynamicMapServiceLayer = new ArcGISDynamicMapServiceLayer("http://services5.arcgis.com/Jr5Gzj0MKa8VuFTN/arcgis/rest/services/wifilocations/FeatureServer/", {
+          "opacity" : 1,
+          "imageParameters" : imageParameters
+        });
+
+        map.addLayer(dynamicMapServiceLayer);
+
+
+	  map.on("load", initFunc);
+>>>>>>> origin/master
 	        
       geoLocate = new LocateButton({
         map: map
